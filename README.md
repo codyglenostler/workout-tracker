@@ -12,6 +12,12 @@ A phone-friendly training log designed for use at the gym: open today's program,
 
 Open **Today** and expand an exercise to see its cues, weight entry, and completion control. **Week** shows the training schedule; **Progress** and **Weight** provide views of recorded history. For an isolated demo, use the local setup below with no cloud configuration.
 
+## A quick review
+
+1. **See the workflow:** open [the app](https://workout-tracker-two-beta.vercel.app), expand an exercise on **Today**, and inspect its cues and weight controls. Use the local setup below for an isolated trial without a cloud connection.
+2. **Follow a record:** inspect [the local database](src/lib/db/) and [the sync queue](src/lib/sync/sync-queue.ts) to see how workout entries are stored and optionally backed up.
+3. **Examine the tradeoff:** compare [push behavior](src/lib/sync/sync-push.ts) with [restore behavior](src/lib/sync/sync-pull.ts). The implementation favors browser-local use with optional backup; continuous multi-device conflict resolution is outside its scope.
+
 ## What the project demonstrates
 
 - **Local-first storage:** Dexie/IndexedDB holds the program, workout logs, exercise records, and body metrics.
