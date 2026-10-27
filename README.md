@@ -64,7 +64,7 @@ The program is seeded from [`src/lib/workout-plan/`](src/lib/workout-plan/) and 
 
 ## Cloud behavior and limits
 
-Cloud integration is optional and intended for a configured personal deployment. The implementation reads `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`. Those variables alone are **not a complete backend setup**: matching tables and appropriate access policies are also required, and schema migrations are not included in this repository.
+Cloud integration is optional and intended for a configured personal deployment. It is disabled by default. Enable it with `NEXT_PUBLIC_ENABLE_CLOUD_SYNC=true`, `NEXT_PUBLIC_SUPABASE_URL`, and `NEXT_PUBLIC_SUPABASE_ANON_KEY`. Those variables are **not a complete backend setup**: matching tables and appropriate access policies are also required, and schema migrations are not included in this repository.
 
 [Restore](src/lib/sync/sync-pull.ts) runs when the local workout-log table is empty. The app does not continuously pull remote edits into an already populated device, resolve concurrent changes, or synchronize deletions. Programs and exercise templates remain locally seeded. Do not interpret this as a ready-made multi-user service.
 

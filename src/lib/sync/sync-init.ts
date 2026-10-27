@@ -2,6 +2,7 @@ import { registerSyncHooks } from "./sync-hooks";
 import { pullFromCloud } from "./sync-pull";
 import { startSyncPusher } from "./sync-push";
 import { pushAllExistingData } from "./sync-seed-push";
+import { isCloudSyncConfigured } from "./config";
 
 let initialized = false;
 
@@ -9,9 +10,9 @@ export async function initSync() {
   if (initialized) return;
   initialized = true;
 
-  // Skip sync if env vars not configured
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-    console.warn("[sync] Supabase not configured, skipping sync");
+  // Cloud sync is opt-in so stale deployment credentials cannot disrupt
+  // the local-first workout flow.
+  if (!isCloudSyncConfigured()) {
     return;
   }
 
